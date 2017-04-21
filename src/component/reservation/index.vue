@@ -1,26 +1,30 @@
 <template>
-  <div id="reservation">
-    <ul id="unreturn">
-      <li v-for="res in reservation">
-        <div id="res-applicant">
-          <img class="avatar" :src="res.avatar">
-          <div id="res-applicant-name">{{ res.applicant }}</div>
-        </div>
-        <div id="res-info">
-          <div><label>车辆信息</label><p>{{ res.car }}</p></div>
-          <div><label>预计出发</label><p>{{ res['schedule-start'].replace(/^\d{4}-/, '') }}</p></div>
-          <div><label>预计返回</label><p>{{ res['schedule-end'].replace(/^\d{4}-/, '') }}</p></div>
-          <div><label>司机</label><p>{{ res.driver }}</p></div>
-          <div><label>归还时间</label><p>{{ res.returnDt }}</p></div>
-        </div>
-        <div id="return-btn">
-          <transition name="check-fade">
-            <div class="button" v-if="res.status == 1" @touchend="returnCar(res.resid)">归还车辆</div>
-            <div class="check fa fa-check" v-if="res.status == 3"></div>
-          </transition>
-        </div>
-      </li>
-    </ul>
+  <div class="reservation">
+    <mt-loadmore ref="loadmore" class="reservation"
+      :top-method="loadTop"
+      topLoadingText="玩儿命加载中…">
+      <ul id="unreturn">
+        <li v-for="res in reservation">
+          <div id="res-applicant">
+            <img class="avatar" :src="res.avatar">
+            <div id="res-applicant-name">{{ res.applicant }}</div>
+          </div>
+          <div id="res-info">
+            <div><label>车辆信息</label><p>{{ res.car }}</p></div>
+            <div><label>预计出发</label><p>{{ res['schedule-start'].replace(/^\d{4}-/, '') }}</p></div>
+            <div><label>预计返回</label><p>{{ res['schedule-end'].replace(/^\d{4}-/, '') }}</p></div>
+            <div><label>司机</label><p>{{ res.driver }}</p></div>
+            <div><label>归还时间</label><p>{{ res.returnDt }}</p></div>
+          </div>
+          <div id="return-btn">
+            <transition name="check-fade">
+              <div class="button" v-if="res.status == 1" @touchend="returnCar(res.resid)">归还车辆</div>
+              <div class="check fa fa-check" v-if="res.status == 3"></div>
+            </transition>
+          </div>
+        </li>
+      </ul>
+    </mt-loadmore>
     <div v-if="reservation.length == 0" class="null">
       <div class="null-icon fa fa-smile-o"></div>
       <p class="null-text">没有未还车辆</p>
@@ -87,6 +91,19 @@ export default {
           iconClass: 'icon-success fa fa-times'
         });
       } );
+    },
+    loadTop () {
+      // 加载更多数据
+      this.$http.get('http://www.gdrtc.org/car/server/reservation/unreturn-reservation.php',{
+          responseType: 'json',
+        }).then(response => {
+        this.reservation = response.data;
+        this.$refs.loadmore.onTopLoaded();
+      }, response => {
+        console.log(response);
+        this.reservation = [];
+        this.$refs.loadmore.onTopLoaded();
+      });
     }
   }
 }
@@ -94,6 +111,9 @@ export default {
 </script>
 
 <style>
+.reservation{
+  height: 100%; width: 100%;
+}
 ul#unreturn{
   margin: 0 .5em; padding: 0;
   /*width: 100%;*/
@@ -171,11 +191,14 @@ ul#unreturn p{
 .null{
   color: rgba(50, 50, 50, .5);
   text-align: center;
-  height: 100%;
+  width: 100%; height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: absolute;
+  top: 0;
+  z-index: -999;
 }
 .null-icon{
   animation: hehe 1s linear infinite alternate;

@@ -37,7 +37,7 @@ html,
 body{
   width: 100%; height: 100%;
   margin: 0; padding: 0;
-  font-family: "Microsoft Yahei","Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
+  font-family: "Microsoft Yahei", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 a:-webkit-any-link {
   color: inherit;
