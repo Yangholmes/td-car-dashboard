@@ -1,8 +1,8 @@
 <template>
   <div class="reservation">
-    <mt-loadmore ref="loadmore" class="reservation"
+    <!-- <mt-loadmore ref="loadmore" class="reservation"
       :top-method="loadTop"
-      topLoadingText="玩儿命加载中…">
+      topLoadingText="玩儿命加载中…"> -->
       <ul id="unreturn">
         <li v-for="res in reservation">
           <div id="res-applicant">
@@ -24,7 +24,7 @@
           </div>
         </li>
       </ul>
-    </mt-loadmore>
+    <!-- </mt-loadmore> -->
     <div v-if="reservation.length == 0" class="null">
       <div class="null-icon fa fa-smile-o"></div>
       <p class="null-text">没有未还车辆</p>
@@ -114,6 +114,9 @@ export default {
 .reservation{
   height: 100%; width: 100%;
 }
+.mint-loadmore-content{
+  height: 100%
+}
 ul#unreturn{
   margin: 0 .5em; padding: 0;
   /*width: 100%;*/
@@ -128,6 +131,9 @@ ul#unreturn li{
   /*border: 1px solid rgba(50, 50, 50, .7);*/
   border-radius: 5px;
   box-shadow: 1px 0 5px rgba(150, 150, 150, .9);
+}
+ul#unreturn li:last-child{
+  margin-bottom: 5em;
 }
 
 ul#unreturn li #res-applicant{

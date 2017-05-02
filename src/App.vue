@@ -5,15 +5,15 @@
     <div id="navigation">
       <mt-tabbar :fixed="true" v-model="selected">
         <mt-tab-item id="reservation-tab">
-          <router-link class="router-link" to="reservation">
+          <router-link class="router-link" to="reservation" @touchend="refresh">
             <div class="fa fa-check-square-o nav-icon"></div>
             返还登记
           </router-link>
         </mt-tab-item>
         <mt-tab-item id="car-tab">
           <router-link class="router-link" to="car">
-          <div class="fa fa-car nav-icon"></div>
-          车辆管理
+            <div class="fa fa-car nav-icon"></div>
+            车辆管理
           </router-link>
         </mt-tab-item>
       </mt-tabbar>
@@ -27,6 +27,12 @@ export default {
   data () {
     return {
       selected: 'reservation-tab'
+    }
+  },
+  methods: {
+    refresh () {
+      console.log('hh');
+      $emit('loadTop')
     }
   }
 }
@@ -44,7 +50,7 @@ a:-webkit-any-link {
   cursor: auto;
 }
 a{
-  text-decoration: none;;
+  text-decoration: none;
 }
 a:visited{
   color: inherit;
