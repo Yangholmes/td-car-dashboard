@@ -34,6 +34,7 @@
 
 <script>
 import { Indicator, Toast } from 'mint-ui'
+
 export default {
   data () {
     return {
@@ -98,13 +99,14 @@ export default {
           responseType: 'json',
         }).then(response => {
         this.reservation = response.data;
-        this.$refs.loadmore.onTopLoaded();
+        // this.$refs.loadmore.onTopLoaded();
       }, response => {
         console.log(response);
         this.reservation = [];
-        this.$refs.loadmore.onTopLoaded();
+        // this.$refs.loadmore.onTopLoaded();
       });
-    }
+
+    },
   }
 }
 
