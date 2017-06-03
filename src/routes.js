@@ -1,20 +1,21 @@
-import reservation from './component/reservation/index.vue'
-import car from './component/car/index.vue'
+/* jshint esversion: 6 */
+import reservationCheck from './component/reservation-check/index.vue'
+import reservationQuery from './component/reservation-query/index.vue'
 
 const routes = [
   {
     path: '/',
-    redirect: '/reservation'
+    redirect: '/reservation-check'
   },
   {
-    path: '/reservation',
-    name: 'reservation',
-    component: resolve => require(['./component/reservation/index.vue'], resolve)
+    path: '/reservation-check',
+    name: 'reservation-check',
+    component: (resolve) => require(['./component/reservation-check/index.vue'], resolve)
   },
   {
-    path: '/car',
-    name: 'car',
-    component: resolve => require(['./component/car/index.vue'], resolve)
+    path: '/reservation-query',
+    name: 'reservation-query',
+    component: (resolve) => require(['./component/reservation-query/index.vue'], resolve)
   }
 ]
 

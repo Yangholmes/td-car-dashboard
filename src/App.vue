@@ -4,16 +4,16 @@
 
     <div id="navigation">
       <mt-tabbar :fixed="true" v-model="selected">
-        <mt-tab-item id="reservation-tab">
-          <router-link class="router-link" to="reservation" replace>
+        <mt-tab-item id="reservation-check-tab">
+          <router-link class="router-link" to="reservation-check" replace>
             <div class="fa fa-check-square-o nav-icon"  @touchend="refresh"></div>
             返还登记
           </router-link>
         </mt-tab-item>
-        <mt-tab-item id="car-tab">
-          <router-link class="router-link" to="car" replace>
-            <div class="fa fa-car nav-icon"></div>
-            车辆管理
+        <mt-tab-item id="reservation-query-tab">
+          <router-link class="router-link" to="reservation-query" replace>
+            <div class="fa fa-search nav-icon"></div>
+            查记录
           </router-link>
         </mt-tab-item>
       </mt-tabbar>
@@ -26,7 +26,7 @@ export default {
   name: 'app',
   data () {
     return {
-      selected: 'reservation-tab'
+      selected: 'reservation-check-tab'
     }
   },
   methods: {

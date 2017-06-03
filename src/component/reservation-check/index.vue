@@ -1,6 +1,6 @@
 <template>
-  <div class="reservation">
-    <!-- <mt-loadmore ref="loadmore" class="reservation"
+  <div id="reservation-check">
+    <!-- <mt-loadmore ref="loadmore" class="reservation-check"
       :top-method="loadTop"
       topLoadingText="玩儿命加载中…"> -->
       <ul id="unreturn">
@@ -113,7 +113,7 @@ export default {
 </script>
 
 <style>
-.reservation{
+#reservation-check{
   height: 100%; width: 100%;
 }
 .mint-loadmore-content{
