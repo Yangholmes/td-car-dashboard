@@ -34,6 +34,7 @@
 
 <script>
 import { Indicator, Toast } from 'mint-ui'
+import { MessageBox } from 'mint-ui';
 
 export default {
   data () {
@@ -59,7 +60,7 @@ export default {
     returnCar (resid) {
       let data = {
         resid: resid,
-        userid: '03401806572466'
+        userid: window._user.userid
       };
       Indicator.open({
         text: '还车中...',
@@ -71,6 +72,11 @@ export default {
             'Content-Type': 'enctype="application/x-www-form-urlencoded; charset=utf-8"'
         }
       }).then( response => {
+        if(response.data.error == '1'){
+          Indicator.close();
+          MessageBox.alert('您没有权限执行操作', '注意啦！');
+          return false;
+        }
         let records = response.data.records;
         this.reservation.forEach( e => {
           if(e.resid == records.resid){
