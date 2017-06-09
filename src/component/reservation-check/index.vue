@@ -60,7 +60,7 @@ export default {
     returnCar (resid) {
       let data = {
         resid: resid,
-        userid: window._user.userid
+        userid: _user.userid
       };
       Indicator.open({
         text: '还车中...',
