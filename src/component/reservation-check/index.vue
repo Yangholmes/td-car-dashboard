@@ -216,8 +216,13 @@ ul#unreturn p{
 }
 .null-icon{
   animation: hehe 1s linear infinite alternate;
+  -webkit-animation: hehe 1s linear infinite alternate;
 }
 @keyframes hehe{
+  from { font-size: 1em; }
+  to { font-size: 5em; }
+}
+@-webkit-keyframes hehe{
   from { font-size: 1em; }
   to { font-size: 5em; }
 }
