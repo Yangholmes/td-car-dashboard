@@ -1,8 +1,9 @@
 <template>
   <div id="reservation-query">
     <div class="query-key-form">
-      <car-picker :car="car" label="车辆选择" @updateCar="updateCar"></car-picker>
-      <datetime-picker :datetime="datetime" label="日期" @updateDatetime="updateDatetime"></datetime-picker>
+      <car-picker       :car="car"              @update:car="val => car = val"            label="车辆选择:"></car-picker>
+      <datetime-picker  :datetime="startDate"   @update:datetime="val => startDate = val" label="起始日期:"></datetime-picker>
+      <datetime-picker  :datetime="endDate"     @update:datetime="val => endDate = val"   label="结束日期:"></datetime-picker>
       <div class="query-key-form-button button fa fa-search" @touchend="queryReservation">搜索</div>
     </div>
 
@@ -20,7 +21,7 @@ import datetimePicker from './datetime-picker.vue'
 import reservationList from './reservation-list.vue'
 export default {
   components: {
-    // carPicker: (resolve) => require(['./car-picker.vue'], resolve) // 异步加载异常
+    // carPicker: (resolve) => require(['./car-picker.vue'], resolve), // 异步加载异常
     carPicker,
     datetimePicker,
     reservationList
@@ -28,7 +29,8 @@ export default {
   data () {
     return {
       car: {},
-      datetime: '',
+      startDate: '',
+      endDate: '',
       reservation: []
     }
   },
@@ -36,14 +38,8 @@ export default {
 
   },
   methods: {
-    updateCar (car) {
-      this.car = car;
-    },
-    updateDatetime (datetime) {
-      this.datetime = datetime;
-    },
     queryReservation (){
-      if( !this.car.carid || !this.datetime){
+      if( !this.car.carid || !this.startDate || !this.endDate){
         MessageBox.alert('请指定查询条件', '注意啦！');
         return false;
       }

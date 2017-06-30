@@ -20,9 +20,9 @@
     methods: {
       popupPicker () {
         let that = this;
-        // that.$emit('updateDatetime', '2017-04-26')
+        that.$emit('update:datetime', '2017-04-26')
         // 引入钉钉后可用
-        dd.biz.util.datetimepicker({
+        /*dd.biz.util.datepicker({
           format: 'yyyy-MM-dd',
           value: '', //默认显示
           onSuccess : function(result) {
@@ -32,7 +32,7 @@
           onFail : function() {
 
           }
-        });
+        });*/
       }
     }
   }

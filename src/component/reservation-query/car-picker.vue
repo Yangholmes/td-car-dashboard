@@ -41,7 +41,7 @@ export default {
       this.popup = !this.popup;
     },
     selectCar (car) {
-      this.$emit('updateCar', car)
+      this.$emit('update:car', car)
     }
   }
 }
