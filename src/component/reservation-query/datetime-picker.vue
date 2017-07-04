@@ -20,19 +20,19 @@
     methods: {
       popupPicker () {
         let that = this;
-        that.$emit('update:datetime', '2017-04-26')
+        // that.$emit('update:datetime', '2017-07-03')
         // 引入钉钉后可用
-        /*dd.biz.util.datepicker({
+        dd.biz.util.datepicker({
           format: 'yyyy-MM-dd',
           value: '', //默认显示
           onSuccess : function(result) {
             result.value
-            that.$emit('updateDatetime', result.value)
+            that.$emit('update:datetime', result.value)
           },
           onFail : function() {
 
           }
-        });*/
+        });
       }
     }
   }

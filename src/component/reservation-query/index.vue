@@ -45,7 +45,8 @@ export default {
       }
       let query = {
         car: this.car.carid,
-        date: this.datetime
+        startDate: this.startDate,
+        endDate: this.endDate
       };
       this.$http.post('http://www.gdrtc.org/car/server/reservation/query-reservation.php', query, {
         emulateJSON: true,
@@ -82,6 +83,6 @@ export default {
 }
 
 .query-result{
-  margin-top: calc( 0.5em * 6 + 4em + 0.5em );
+  margin-top: calc( 0.5em * 6 + 6em + 0.5em );
 }
 </style>

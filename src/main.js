@@ -17,8 +17,8 @@ Vue.use(MintUI)
 import routes from './routes.js'
 const router = new VueRouter({
   mode: 'history',
-  // base: 'dashboard',
-  base: __dirname,
+  base: 'dashboard',
+  // base: __dirname,
   routes // （缩写）相当于 routes: routes
 })
 
